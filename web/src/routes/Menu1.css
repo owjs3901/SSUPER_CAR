@@ -1,0 +1,167 @@
+/* 전체 100% */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color:#ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 내용 담을 공간 전체의 100% */
+.container3 {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(#D1D4D6, #296A9B);
+}
+
+/* header공간 container에서 15% */
+header {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.row0 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+i.icon-left {
+    width: 100%;
+    height: 50%;
+    font-size: 3em;
+}
+
+i.icon-left:hover {
+    color: rgb(0, 255, 34);
+}
+
+p.title {
+    width: 100%;
+    height: 50%;
+    font-size: 2em;
+    text-align: center;
+}
+
+/* content container에서 70% */
+section.content {
+    width: 100%;
+    height: 70%;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.row1 {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.menu1-page-button {
+    background-color: #444444;
+    outline: 0;
+    font-size: 1em;
+    width: 100%;
+    height: 100%;
+    margin: 4%;
+    padding: 1%;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button.menu1-page-button:hover {
+    background-color: rgb(211, 216, 238);
+}
+
+.resist-padding {
+    height: 20%;
+    width: 100%;
+}
+
+.resist-circle {
+    height: 50%;
+    width: 70%;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-img {
+    height: 50%;
+    width: 60%;
+}
+
+.resist-bottom {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    color: white;
+}
+
+i.icon-left {
+    width: 100%;
+    height: 50%;
+    font-size: 3em;
+    border: 0;
+}
+
+
+/* footer 전체의 15% */
+.menu1-page-footer {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.row2 {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p.user {
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+    height: 90%;
+    outline: 0;
+}

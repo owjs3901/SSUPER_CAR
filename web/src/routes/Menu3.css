@@ -1,0 +1,138 @@
+/* 전체 100% */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color:#ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 내용 담을 공간 전체의 100% */
+.container5 {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#D1D4D6, #296A9B);
+}
+
+/* header공간 container에서 15% */
+.menu3-page-header {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.row5 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+i.icon-left {
+    width: 100%;
+    height: 50%;
+    font-size: 3em;
+}
+
+i.icon-left:hover {
+    color: rgb(0, 255, 34);
+}
+
+p.title {
+    width: 100%;
+    height: 50%;
+    font-size: 2em;
+    text-align: center;
+}
+
+/* content container에서 80% */
+section.content5 {
+    width: 100%;
+    height: 80%;
+}
+
+.menu3-page-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.row6 {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.menu3-page-left {
+    width: 90%;
+    height: 90%;
+    margin: 1%;
+    display: flex;
+    justify-content: center;
+}
+
+.menu3-page-img {
+    width: 100%;
+    height: 100%;
+    /* margin: 4%;
+    padding: 1%; */
+    background-color: rgba(0, 0, 0, 0.315);
+    border-radius: 1em;
+}
+
+div.menu3-page-right {
+    width: 90%;
+    height: 90%;
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu3-page-button {
+    background-color: white;
+    outline: 0;
+    font-size: 1em;
+    width: 85%;
+    height: 15%;
+    padding: 1%;
+    border-radius: 1em;
+
+}
+
+.menu3-page-chart {
+    width: 85%;
+    height: 80%;
+    border-radius: 2em;
+    padding: 1%;
+    background-color: #444444;
+}
+
+.chartjs-size-monitor {
+    height: 100%;
+    width: 100%;
+}
+
+.chartjs-render-monitor {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* footer 전체의 5% */
+.menu3-page-footer {
+    width: 100%;
+    height: 5%;
+}
+
+
