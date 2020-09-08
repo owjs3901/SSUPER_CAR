@@ -14,7 +14,7 @@ import seatbelt from "../img/seat-belt.png";
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
                        Menu1: false,
                        Menu2: false,
                        Menu3: false
@@ -24,21 +24,21 @@ class Home extends React.Component {
     changeStatus1 = () => {
         this.setState((prevState, prevProps) => {
             return {Menu1: !prevState.Menu1};
-          }, 
+          },
             () => console.log("after Menu1 status: " + this.state.Menu1));
     }
 
     changeStatus2 = () => {
         this.setState((prevState, prevProps) => {
             return {Menu2: !prevState.Menu2};
-          }, 
+          },
             () => console.log("after Menu2 status: " + this.state.Menu2));
     }
 
     changeStatus3 = () => {
         this.setState((prevState, prevProps) => {
             return {Menu3: !prevState.Menu3};
-          }, 
+          },
             () => console.log("after Menu3 status: " + this.state.Menu3));
     }
 
@@ -125,7 +125,7 @@ class Home extends React.Component {
                         <div className="right-menu-1">
                             <div className="right-menu-padding-1">
                                 <Link className="right-link" to={{
-                                    pathname:"/SSUPER_CAR/menu1",
+                                    pathname:"/menu1",
                                     state: {
                                         checkbox:this.state.Menu1
                                     }
@@ -133,14 +133,14 @@ class Home extends React.Component {
                                 <div className="right-menu-padding-img-1">
                                     <img className="right-menu-img-1" src={hexagon1} alt="menu-1"></img>
                                     <div className="right-menu-text-1"><img className="home-right-img" src={fingerprint} alt="fingerprint"></img><br></br>생체인증<br></br>보안시스템</div>
-                                </div> 
+                                </div>
                                 </Link>
                             </div>
                         </div>
                         <div className="right-menu-2">
                             <div className="right-menu-padding-2">
                                 <Link className="right-link" to={{
-                                    pathname:"/SSUPER_CAR/menu2",
+                                    pathname:"/menu2",
                                     state: {
                                         checkbox:this.state.Menu2
                                     }
@@ -148,14 +148,14 @@ class Home extends React.Component {
                                 <div className="right-menu-padding-img-2">
                                     <img className="right-menu-img-2" src={hexagon2} alt="menu-1"></img>
                                     <div className="right-menu-text-2"><img className="home-right-img" src={driver} alt="driver"></img><br></br>운전자<br></br>모니터링</div>
-                                </div> 
+                                </div>
                                 </Link>
                             </div>
                         </div>
                         <div className="right-menu-3">
                             <div className="right-menu-padding-3">
                                 <Link className="right-link" to={{
-                                    pathname:"/SSUPER_CAR/menu3",
+                                    pathname:"/menu3",
                                     state: {
                                         checkbox:this.state.Menu3,
                                     }
@@ -164,7 +164,7 @@ class Home extends React.Component {
                                     <img className="right-menu-img-3" src={hexagon3} alt="menu-1"></img>
                                     <div className="right-menu-text-3"><img className="home-right-img" src={seatbelt} alt="seat-belt"></img><br></br>동승자 케어<br></br>솔루션</div>
                                 </div>
-                                </Link> 
+                                </Link>
                             </div>
                         </div>
                     </div>
