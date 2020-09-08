@@ -9,7 +9,6 @@ import Menu3 from "./routes/Menu3";
 
 class App extends React.Component {
 	render() {
-		console.log("INIT")
 		return (
 			<BrowserRouter>
 				<Route path="/menu1" exact={true} component={Menu1}/>
