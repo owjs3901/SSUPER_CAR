@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const crypto = require('crypto');
 
+let client = null;
 
 app.use(bodyParser.json());
 /* ----- session ----- */
@@ -38,7 +39,9 @@ app.listen(3000)
  * TCP
  */
 const net = require('net');
+
 const server = net.createServer(function (socket){
+	client = socket
 	socket.on('data', function (data){
 		console.log('rcv:' + data)
 	})
