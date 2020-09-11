@@ -9,15 +9,16 @@ import hexagon3 from "../img/hexagon-menu-3.png";
 import fingerprint from "../img/finger-print.png";
 import driver from "../img/driver.png";
 import seatbelt from "../img/seat-belt.png";
+import {connect} from "react-redux"
 
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-                       Menu1: false,
-                       Menu2: false,
-                       Menu3: false
+                       Menu1: props.setting[0],
+                       Menu2: props.setting[1],
+                       Menu3: props.setting[2]
                      };
     }
 
@@ -175,4 +176,8 @@ class Home extends React.Component {
 
 }
 
-export default Home;
+export default connect(status => {
+    return {
+        setting : status.setting
+    }
+})(Home);

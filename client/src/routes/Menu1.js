@@ -2,6 +2,7 @@ import React from "react";
 import "./Menu1.css";
 import driver from "../img/driver-black.png";
 import adduser from "../img/add-user.png";
+import {connect} from 'react-redux'
 
 class Menu1 extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class Menu1 extends React.Component {
     render() {
         return (
             <div className="container3">
-                {/* container */} 
+                {/* container */}
                 {/* header title */}
                 <header>
                     <div className="row0">
@@ -33,17 +34,17 @@ class Menu1 extends React.Component {
                         <div className="row1">
                             <button className="menu1-page-button" id="resist_1">
                                 <div className="resist-padding"></div>
-                                <div className="resist-circle"><img className="circle-img" src={driver} alt="driver"></img></div>
+                                <div className="resist-circle"><img className="circle-img" src={this.props.user == 0 ? driver : adduser} alt="driver"></img></div>
                                 <div className="resist-bottom"><p>user 1</p></div>
                             </button>
                             <button className="menu1-page-button" id="resist_2">
                                 <div className="resist-padding"></div>
-                                <div className="resist-circle"><img className="circle-img" src={adduser} alt="adduser"></img></div>
+                                <div className="resist-circle"><img className="circle-img" src={this.props.user == 1 ? driver : adduser} alt="adduser"></img></div>
                                 <div className="resist-bottom"><p>user 2</p></div>
                             </button>
                             <button className="menu1-page-button" id="resist_3">
                                 <div className="resist-padding"></div>
-                                <div className="resist-circle"><img className="circle-img" src={adduser} alt="adduser"></img></div>
+                                <div className="resist-circle"><img className="circle-img" src={this.props.user == 2 ? driver : adduser} alt="adduser"></img></div>
                                 <div className="resist-bottom"><p>user 3</p></div>
                             </button>
                         </div>
@@ -65,11 +66,15 @@ class Menu1 extends React.Component {
                 </footer>
                 {/* bottom footer */}
 
-            {/* container */} 
+            {/* container */}
             </div>
         );
     }
 
 }
 
-export default Menu1;
+export default connect((state) => {
+    return {
+        user : state.user
+    }
+})(Menu1);
