@@ -15,20 +15,23 @@ function login(user){
 		user:user
 	}
 }
-function bioSetting(user){
+function bioSetting(value){
 	return {
-		type:BIO_SETTING
+		type:BIO_SETTING,
+		value
 	}
 }
 
-function driverSetting(user){
+function driverSetting(value){
 	return {
-		type:DRIVER_SETTING
+		type:DRIVER_SETTING,
+		value
 	}
 }
-function passengerSetting(user){
+function passengerSetting(value){
 	return {
-		type:PASSENGER_SETTING
+		type:PASSENGER_SETTING,
+		value
 	}
 }
 
@@ -43,13 +46,13 @@ const reducer = (state = initialState, action) => {
 			state.user = action.user
 			break;
 		case BIO_SETTING:
-			state.state.setting[0] = !state.setting[0]
+			state.state.setting[0] = action.value
 			break;
 		case DRIVER_SETTING:
-			state.state.setting[1] = !state.setting[1]
+			state.state.setting[1] = action.value
 			break;
 		case PASSENGER_SETTING:
-			state.state.setting[2] = !state.setting[2]
+			state.state.setting[2] = action.value
 			break;
 		default:
 			break;
@@ -59,5 +62,8 @@ const reducer = (state = initialState, action) => {
 
 export {
 	reducer,
-	login
+	login,
+	bioSetting,
+	driverSetting,
+	passengerSetting
 }
