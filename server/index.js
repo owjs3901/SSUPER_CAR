@@ -32,6 +32,18 @@ app.get('/', function (req, res) {
 
 app.use(express.static(__dirname + '/../client/build'));
 
-
-
 app.listen(3000)
+
+/**
+ * TCP
+ */
+const net = require('net');
+const server = net.createServer(function (socket){
+	socket.on('data', function (data){
+		console.log('rcv:' + data)
+	})
+})
+server.on('error', function (error) {
+	console.error(error)
+})
+server.listen(3001)
