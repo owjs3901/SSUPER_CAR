@@ -1,0 +1,14 @@
+{
+  "id": "com.mbs",
+  "version": "1.0.0",
+  "vendor": "My Company",
+  "type": "web",
+  "main": "index.html",
+  "title": "new app",
+  "icon": "icon.png",
+  "requiredPermissions": [
+    "time",
+    "settings.read",
+    "activities.manage"
+  ]
+}
