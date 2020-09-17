@@ -1,0 +1,90 @@
+/* 전체 100% */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color:#ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 내용 담을 공간 전체의 100% */
+.container4 {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(#D1D4D6, #296A9B);
+}
+
+/* header공간 container에서 15% */
+.menu2-page-header {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.row3 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+i.icon-left {
+    width: 100%;
+    height: 50%;
+    font-size: 3em;
+}
+
+i.icon-left:hover {
+    color: rgb(0, 255, 34);
+}
+
+p.title {
+    width: 100%;
+    height: 50%;
+    font-size: 2em;
+    text-align: center;
+}
+
+/* content container에서 80% */
+section.content4 {
+    width: 100%;
+    height: 80%;
+}
+
+.menu2-page-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.row4 {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu2-page-img {
+    background-color: rgba(0, 0, 0, 0.315);
+    width: 100%;
+    height: 100%;
+    /* margin: 4%;
+    padding: 1%; */
+    border-radius: 1em;
+}
+
+/* footer 전체의 5% */
+.menu2-page-footer {
+    width: 100%;
+    height: 5%;
+}
+
+
