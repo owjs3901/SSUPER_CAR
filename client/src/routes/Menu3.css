@@ -32,6 +32,7 @@ div.row5 {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .go-to-home-p-3 {
