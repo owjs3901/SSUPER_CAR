@@ -1,9 +1,10 @@
 /* 전체 100% */
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     margin: 0;
-    background-color:#ffffff;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,17 +32,26 @@ div.row5 {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-i.icon-left {
+.go-to-home-p-3 {
+    position: absolute;
+    top: 10%;
+    left: 9%;
+    width: 5%;
+    height: 40%;
+}
+
+.go-to-home-3 {
     width: 100%;
-    height: 50%;
-    font-size: 3em;
+    height: 100%;
 }
 
-i.icon-left:hover {
-    color: rgb(0, 255, 34);
+.go-to-home-3:hover {
+    opacity: 0.6;
 }
+
 
 p.title {
     width: 100%;
@@ -134,5 +144,3 @@ div.menu3-page-right {
     width: 100%;
     height: 5%;
 }
-
-

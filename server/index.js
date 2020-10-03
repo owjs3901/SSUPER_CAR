@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const cors = require('cors');
 const crypto = require('crypto');
 
 let client = null;
@@ -18,6 +19,8 @@ app.use(cookieSession({
 	maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }))
 app.use(cookieParser())
+
+app.use(cors());
 
 /* ----- serve static ----- */
 app.use(express.static(path.join(__dirname, 'views')));
@@ -44,6 +47,7 @@ const server = net.createServer(function (socket){
 	client = socket
 	socket.on('data', function (data){
 		console.log('rcv:' + data)
+		client.write('OK')
 	})
 })
 server.on('error', function (error) {

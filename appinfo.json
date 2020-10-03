@@ -4,11 +4,12 @@
   "vendor": "My Company",
   "type": "web",
   "main": "index.html",
-  "title": "new app",
+  "title": "SSUPER Car",
   "icon": "icon.png",
   "requiredPermissions": [
     "time",
     "settings.read",
-    "activities.manage"
+    "activities.manage",
+    "media"
   ]
 }

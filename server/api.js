@@ -186,4 +186,10 @@ router.post('/response', (req, res) => {
 		})
 	}
 })
+
+router.post('/model', ((req, res) => {
+	console.log('model', req.body)
+	res.send('OK')
+}))
+
 module.exports = router;
