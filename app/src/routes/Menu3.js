@@ -5,41 +5,31 @@ import { Line } from "react-chartjs-2";
 import homeKey from "../img/home.png";
 import { Link } from "react-router-dom";
 import Webcam from "react-webcam";
+import fetch from "node-fetch";
 
 class Menu3 extends React.Component {
   constructor(props) {
     super(props);
+
+    setInterval(function(){
+      fetch('http://mbs-b.com:3000/data')
+      .then(res=>{
+        return res.json()
+      })
+      .then(res=>{
+        console.log(res.data)
+        let a = {...this.state}
+        a.data = res;
+        setState(a)
+      })
+    }, 1000);
+
     this.state = {
       checkbox: this.props.checkbox,
       warning: false,
       chartTemperature: [],
       chartHumidity: [],
-      data: {
-        labels: ["1", "2", "3", "4", "5"],
-        datasets: [
-          {
-            label: "온도",
-            lineTension: 0,
-            borderColor: "rgba(171, 23, 164, 1.0)",
-            backgroundColor: "rgba(0,0,0,0.00)",
-            data: [4, 5, 1, 10, 32, 2, 12],
-          },
-          {
-            label: "습도",
-            lineTension: 0,
-            borderColor: "rgba(176, 224, 230, 1.0)",
-            backgroundColor: "rgba(0,0,0,0.00)",
-            data: [14, 25, 23, 10, 0, 2, 12],
-          },
-          {
-            label: "체온",
-            lineTension: 0,
-            borderColor: "rgba(171, 223, 64, 1.0)",
-            backgroundColor: "rgba(0,0,0,0.00)",
-            data: [22, 31, 23, 11, 14, 15, 12],
-          }
-        ],
-      },
+      data: [[],[],[]]
     };
   }
 
@@ -101,7 +91,32 @@ class Menu3 extends React.Component {
                     options={{
                       maintainAspectRatio: false,
                     }}
-                    data={this.state.data}
+                    data={{
+                      labels: ["1", "2", "3", "4", "5"],
+                      datasets: [
+                        {
+                          label: "온도",
+                          lineTension: 0,
+                          borderColor: "rgba(171, 23, 164, 1.0)",
+                          backgroundColor: "rgba(0,0,0,0.00)",
+                          data: this.state.data[0],
+                        },
+                        {
+                          label: "습도",
+                          lineTension: 0,
+                          borderColor: "rgba(176, 224, 230, 1.0)",
+                          backgroundColor: "rgba(0,0,0,0.00)",
+                          data: this.state.data[1],
+                        },
+                        {
+                          label: "체온",
+                          lineTension: 0,
+                          borderColor: "rgba(171, 223, 64, 1.0)",
+                          backgroundColor: "rgba(0,0,0,0.00)",
+                          data: this.state.data[2],
+                        }
+                      ],
+                    }}
                   />
                 </div>
                 {/* <button class="menu3-page-button" id="menu_2">실내온도 자동조절 시스템 : ON</button>
