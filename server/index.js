@@ -46,8 +46,11 @@ const net = require('net');
 const server = net.createServer(function (socket){
 	client = socket
 	socket.on('data', function (data){
-		console.log('rcv:' + data)
-		client.write('OK')
+		console.log('rcv:' + data + '!')
+		client.write('STOP')
+	})
+	socket.on('error', function (error) {
+		console.error(error)
 	})
 })
 server.on('error', function (error) {
