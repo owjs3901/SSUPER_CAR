@@ -5,10 +5,12 @@ import adduser from "../img/add-user.png";
 import homeKey from "../img/home.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { login } from "../../../app/src/reducer";
 
 class Menu1 extends React.Component {
   constructor(props) {
     super(props);
+    console.log("hello world");
     this.state = {
       checkbox: this.props.checkbox,
     };
@@ -41,7 +43,9 @@ class Menu1 extends React.Component {
           <nav></nav>
           <main>
             <div className="row1">
-              <button className="menu1-page-button" id="resist_1">
+              <button  onClick={ e =>{
+                this.props.setUser(login(0))
+              }} className="menu1-page-button" id="resist_1">
                 <div className="resist-padding"></div>
                 <div className="resist-circle">
                   <img
@@ -54,7 +58,11 @@ class Menu1 extends React.Component {
                   <p>user 1</p>
                 </div>
               </button>
-              <button className="menu1-page-button" id="resist_2">
+              <button onClick={e => {
+                      console.log('a')
+                      this.props.setUser(login(1))
+                    }
+                    } className="menu1-page-button" id="resist_2">
                 <div className="resist-padding"></div>
                 <div className="resist-circle">
                   <img
@@ -67,7 +75,10 @@ class Menu1 extends React.Component {
                   <p>user 2</p>
                 </div>
               </button>
-              <button className="menu1-page-button" id="resist_3">
+              <button onClick={e => {
+                      this.props.setUser(login(2))
+                    }
+                    } className="menu1-page-button" id="resist_3">
                 <div className="resist-padding"></div>
                 <div className="resist-circle">
                   <img
@@ -106,4 +117,8 @@ export default connect((state) => {
   return {
     user: state.user,
   };
+}, (dispatch) => {
+  return {
+    setUser: (a) => dispatch(a)
+  }
 })(Menu1);

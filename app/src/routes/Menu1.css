@@ -25,6 +25,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    position: relative;
     flex-direction: column;
     background: linear-gradient(#D1D4D6, #296A9B);
 }

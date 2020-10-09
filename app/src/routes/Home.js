@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import Warning from "../components/Warning.js";
 import sign1 from "../img/sign.png";
 import sign2 from "../img/sign1.png";
 import hexagon1 from "../img/hexagon-menu-1.png";
@@ -18,6 +19,7 @@ class Home extends React.Component {
       Menu1: props.setting[0],
       Menu2: props.setting[1],
       Menu3: props.setting[2],
+      warning: false,      
     };
   }
 
@@ -51,6 +53,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-page-container">
+        <Warning/>
         <div className="home-left">
           <div className="sign">
             <div className="sign-padding">

@@ -1,8 +1,11 @@
+import { createStore } from "redux"
 
 const LOGIN = "LOGIN"
 const BIO_SETTING = "BIO_SETTING"
 const DRIVER_SETTING = "DRIVER_SETTING"
 const PASSENGER_SETTING = "PASSENGER_SETTING"
+const SET_DRIVER = "SET_DRIVER"
+
 
 /**
  *
@@ -35,35 +38,53 @@ function passengerSetting(value){
 	}
 }
 
+function setDriver(value){
+	return {
+		type:SET_DRIVER,
+		value
+	}
+}
+
+
 const initialState = {
-	user : -1, // -1 계정 없음 0, 1, 2
+	user : -1, // -1 계정 없음 0, 1, 2,
+	driver : false,
 	setting:[false, true, false] // 생체인증, 운전자, 동승자
 }
 
 const reducer = (state = initialState, action) => {
+	let newState = {...state}
 	switch(action.type) {
 		case LOGIN:
-			state.user = action.user
+			newState.user = action.user
 			break;
 		case BIO_SETTING:
-			state.state.setting[0] = action.value
+			newState.setting[0] = action.value
 			break;
 		case DRIVER_SETTING:
-			state.state.setting[1] = action.value
+			newState.setting[1] = action.value
 			break;
 		case PASSENGER_SETTING:
-			state.state.setting[2] = action.value
+			newState.setting[2] = action.value
+			break;
+		case SET_DRIVER:
+			newState.driver = action.value
 			break;
 		default:
 			break;
 	}
-	return state;
+	console.log('reducer!! ', newState)
+	return newState;
+	
 }
 
+const store = createStore(reducer);
+
 export {
-	reducer,
+	store,
 	login,
 	bioSetting,
 	driverSetting,
-	passengerSetting
+	passengerSetting,
+	setDriver
 }

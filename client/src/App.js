@@ -5,7 +5,7 @@ import Home from "./routes/Home";
 import Menu1 from "./routes/Menu1";
 import Menu2 from "./routes/Menu2";
 import Menu3 from "./routes/Menu3";
-
+import Warning from "./routes/Warning";
 
 class App extends React.Component {
 	render() {
@@ -14,6 +14,7 @@ class App extends React.Component {
 				<Route path="/menu1" exact={true} component={Menu1}/>
 				<Route path="/menu2" exact={true} component={Menu2}/>
 				<Route path="/menu3" exact={true} component={Menu3}/>
+				<Route path="/warning" exact={true} component={Warning}/>
 				<Route path="/" component={Home}/>
 			</BrowserRouter>
 

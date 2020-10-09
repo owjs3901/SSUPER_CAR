@@ -1,5 +1,6 @@
 import React from "react";
 import "./Menu3.css";
+import Warning from "../components/Warning.js";
 import { Line } from "react-chartjs-2";
 import homeKey from "../img/home.png";
 import { Link } from "react-router-dom";
@@ -10,25 +11,33 @@ class Menu3 extends React.Component {
     super(props);
     this.state = {
       checkbox: this.props.checkbox,
+      warning: false,
       chartTemperature: [],
       chartHumidity: [],
       data: {
         labels: ["1", "2", "3", "4", "5"],
         datasets: [
           {
-            label: "체온",
+            label: "온도",
             lineTension: 0,
             borderColor: "rgba(171, 23, 164, 1.0)",
             backgroundColor: "rgba(0,0,0,0.00)",
             data: [4, 5, 1, 10, 32, 2, 12],
           },
           {
-            label: "기타",
+            label: "습도",
             lineTension: 0,
             borderColor: "rgba(176, 224, 230, 1.0)",
             backgroundColor: "rgba(0,0,0,0.00)",
             data: [14, 25, 23, 10, 0, 2, 12],
           },
+          {
+            label: "체온",
+            lineTension: 0,
+            borderColor: "rgba(171, 223, 64, 1.0)",
+            backgroundColor: "rgba(0,0,0,0.00)",
+            data: [22, 31, 23, 11, 14, 15, 12],
+          }
         ],
       },
     };
@@ -55,6 +64,7 @@ class Menu3 extends React.Component {
   render() {
     return (
       <div className="container5">
+        <Warning />
         {/* container */}
         {/* header title */}
         <header className="menu3-page-header">
@@ -79,7 +89,8 @@ class Menu3 extends React.Component {
           <main className="menu3-page-main">
             <div className="row6">
               <div className="menu3-page-left">
-                <Webcam/>
+                <Webcam         
+                />
               </div>
               <div className="menu3-page-right">
                 <button className="menu3-page-button" id="menu_1">

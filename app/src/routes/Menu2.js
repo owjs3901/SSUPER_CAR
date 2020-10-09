@@ -1,19 +1,23 @@
 import React from "react";
 import "./Menu2.css";
+import Warning from "../components/Warning.js";
 import homeKey from "../img/home.png";
 import { Link } from "react-router-dom";
+import Webcam from "react-webcam";
 
 class Menu3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       checkbox: this.props.checkbox,
+      warning: false,
     };
   }
 
   render() {
     return (
       <div className="container4">
+        <Warning />
         {/* container */}
         {/* header title */}
         <header className="menu2-page-header">
@@ -38,7 +42,8 @@ class Menu3 extends React.Component {
           <nav></nav>
           <main className="menu2-page-main">
             <div className="row4">
-              <img className="menu3-page-img" src="" alt="driver-monitor" />
+              {/* <img className="menu3-page-img" src="" alt="driver-monitor" /> */}
+              <Webcam />
             </div>
           </main>
           <aside></aside>
