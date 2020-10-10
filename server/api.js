@@ -187,9 +187,14 @@ router.post('/response', (req, res) => {
 	}
 })
 
+let nowModel = false;
+
 router.post('/model', ((req, res) => {
-	console.log('model', req.body)
+	nowModel = req.body
 	res.send('OK')
 }))
 
-module.exports = router;
+module.exports = {
+	router,
+	nowModel
+};
