@@ -3,6 +3,8 @@
 AF_DCMotor motor_L(1);              // 모터드라이버 L293D  1: M1에 연결,  4: M4에 연결
 AF_DCMotor motor_R(4); 
 
+SoftwareSerial hc06(2,3);
+
 void setup() {
   Serial.begin(9600);              // PC와의 시리얼 통신속도
   Serial.println("Eduino Smart Car Start!");
