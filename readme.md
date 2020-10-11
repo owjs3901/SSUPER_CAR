@@ -5,7 +5,7 @@
  작품명 : BAVIS - 생체인증 및 생체신호를 활용한 AI 스마트카 솔루션   
 
 ## 시연영상
-<!--[![Watch the video](https://img.youtube.com/vi/3Bf1bq5_Kco/hqdefault.jpg)](https://www.youtube.com/watch?v=3Bf1bq5_Kco)-->
+[![Watch the video](https://img.youtube.com/vi/3Bf1bq5_Kco/hqdefault.jpg)](https://www.youtube.com/watch?v=3Bf1bq5_Kco)
 
 ## 구성원
 - **[오정민](https://github.com/owjs3901)(팀장)**   
