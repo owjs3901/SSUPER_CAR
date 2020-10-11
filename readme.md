@@ -41,7 +41,7 @@ App 애니메이팅 및 UI/UX 개발
 ## UI
 
 ## 개발환경
-- Hardware 구성
+- Hardware 구성   
 ![Alt text](/readme_img/하드웨어구성표.png)   
 
 - Raspberry Pi 4(Rapbian 기반) 회로도
