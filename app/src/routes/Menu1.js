@@ -12,7 +12,7 @@ import fetch from "node-fetch";
 class Menu1 extends React.Component {
   constructor(props) {
     super(props);
-    console.log("hello world");
+    
     this.state = {
       checkbox: this.props.checkbox,
       warning: false,
@@ -77,7 +77,7 @@ class Menu1 extends React.Component {
         {
           this.state.warning ?
           <Warning 
-            callbackFromParent = {this.changeWarn}
+            callbackFromParent = {this.parentCallback}
           />
           : null
         }

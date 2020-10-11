@@ -93,7 +93,7 @@ class Menu3 extends React.Component {
         {
           this.state.warning ?
           <Warning 
-            callbackFromParent = {this.showWarn}
+            callbackFromParent = {this.parentCallback}
           />
           : null
         }

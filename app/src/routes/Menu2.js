@@ -79,10 +79,10 @@ class Menu3 extends React.Component {
   render() {
     return (
       <div className="container4">
-        {
+         {
           this.state.warning ?
           <Warning 
-            callbackFromParent = {this.changeWarn}
+            callbackFromParent = {this.parentCallback}
           />
           : null
         }
