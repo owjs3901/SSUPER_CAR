@@ -16,7 +16,10 @@ class Menu1 extends React.Component {
     this.state = {
       checkbox: this.props.checkbox,
       warning: false,
-      data: [[], [], []],     
+      warningDriver: false,
+      warnType1: "temperature",
+      warnType2: "driver",
+      data: [[], [], [], []],     
     };
   }
 
@@ -35,12 +38,17 @@ class Menu1 extends React.Component {
           res.data[2].forEach((value)=>{
             // console.log(value);
             if(value > 37.5) {
-              this.showWarn();
+              this.showWarn(true);
+            }
+            else {
+              this.showWarn(false);
             }
           });
+          console.log(res.data[3]);
+          this.showWarnDriver(!res.data[3][0]);
 
         });
-      }, 1000);
+      }, 100);
   }
 
   componentWillUnmount(){
@@ -52,22 +60,32 @@ class Menu1 extends React.Component {
     this.setState({data: fetchData});
   }
 
-  showWarn = () => {
+  showWarn = (some) => {
     this.setState(
       (prevState, prevProps) => {
-        return { warning: !prevState.warning };
+        return { warning: some };
       },
       () => console.log("after warning status: " + this.state.warning)
+    );
+  };
+
+  showWarnDriver = (some) => {
+    this.setState(
+      (prevState, prevProps) => {
+        return { warningDriver: some};
+      },
+      () => console.log("after warningDriver status: " + this.state.warningDriver)
     );
   };
 
   parentCallback = (dataFromChild) => {
     // 자식 컴포넌트에서 받은 값을 이용한 로직 처리
     this.setState(
-      (prevState, prevProps) => {
-        return {warning: dataFromChild};
+      {
+          warning: dataFromChild,
+          warningDriver: dataFromChild
       },
-      () => console.log("cancel warning status: " + this.state.warning)
+      () => console.log("cancel warning status: " + this.state.warning + " " + this.state.warningDriver)
     );
   };
 
@@ -78,6 +96,15 @@ class Menu1 extends React.Component {
           this.state.warning ?
           <Warning 
             callbackFromParent = {this.parentCallback}
+            type = {this.state.warnType1}
+          />
+          : null
+        }
+        {
+          this.state.warningDriver ?
+          <Warning
+            callbackFromParent = {this.parentCallback}
+            type = {this.state.warnType2}
           />
           : null
         }
@@ -92,7 +119,7 @@ class Menu1 extends React.Component {
                   pathname: "/",
                 }}
               >
-                <img className="go-to-home" src={homeKey} alt="homekey"></img>
+                <img className="go-to-home" src="http://mbs-b.com:3000/img/home.png" alt="homekey"></img>
               </Link>
             </p>
             <p className="title">생체인증 보안시스템</p>
@@ -112,7 +139,7 @@ class Menu1 extends React.Component {
                 <div className="resist-circle">
                   <img
                     className="circle-img"
-                    src={this.props.user == 0 ? driver : adduser}
+                    src={this.props.user == 0 ? "http://mbs-b.com:3000/img/driver-black.png" : "http://mbs-b.com:3000/img/add-user.png"}
                     alt="driver"
                   ></img>
                 </div>
@@ -129,7 +156,7 @@ class Menu1 extends React.Component {
                 <div className="resist-circle">
                   <img
                     className="circle-img"
-                    src={this.props.user == 1 ? driver : adduser}
+                    src={this.props.user == 1 ? "http://mbs-b.com:3000/img/driver-black.png" : "http://mbs-b.com:3000/img/add-user.png"}
                     alt="adduser"
                   ></img>
                 </div>
@@ -145,7 +172,7 @@ class Menu1 extends React.Component {
                 <div className="resist-circle">
                   <img
                     className="circle-img"
-                    src={this.props.user == 2 ? driver : adduser}
+                    src={this.props.user == 2 ? "http://mbs-b.com:3000/img/driver-black.png" : "http://mbs-b.com:3000/img/add-user.png"}
                     alt="adduser"
                   ></img>
                 </div>

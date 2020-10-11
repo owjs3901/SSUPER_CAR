@@ -14,7 +14,10 @@ class Menu3 extends React.Component {
     this.state = {
       checkbox: this.props.checkbox,
       warning: false,
-      data: [[], [], []],
+      warningDriver: false,
+      warnType1: "temperature",
+      warnType2: "driver",
+      data: [[], [], [], []],    
     };
   }
 
@@ -33,12 +36,17 @@ class Menu3 extends React.Component {
           res.data[2].forEach((value)=>{
             // console.log(value);
             if(value > 37.5) {
-              this.showWarn();
+              this.showWarn(true);
+            }
+            else {
+              this.showWarn(false);
             }
           });
+          console.log(res.data[3]);
+          this.showWarnDriver(!res.data[3][0]);
 
         });
-      }, 1000);
+      }, 100);
   }
 
   componentWillUnmount(){
@@ -50,22 +58,32 @@ class Menu3 extends React.Component {
     this.setState({data: fetchData});
   }
 
-  showWarn = () => {
+  showWarn = (some) => {
     this.setState(
       (prevState, prevProps) => {
-        return { warning: !prevState.warning };
+        return { warning: some };
       },
       () => console.log("after warning status: " + this.state.warning)
+    );
+  };
+
+  showWarnDriver = (some) => {
+    this.setState(
+      (prevState, prevProps) => {
+        return { warningDriver: some};
+      },
+      () => console.log("after warningDriver status: " + this.state.warningDriver)
     );
   };
 
   parentCallback = (dataFromChild) => {
     // 자식 컴포넌트에서 받은 값을 이용한 로직 처리
     this.setState(
-      (prevState, prevProps) => {
-        return {warning: dataFromChild};
+      {
+          warning: dataFromChild,
+          warningDriver: dataFromChild
       },
-      () => console.log("cancel warning status: " + this.state.warning)
+      () => console.log("cancel warning status: " + this.state.warning + " " + this.state.warningDriver)
     );
   };
 
@@ -94,6 +112,15 @@ class Menu3 extends React.Component {
           this.state.warning ?
           <Warning 
             callbackFromParent = {this.parentCallback}
+            type = {this.state.warnType1}
+          />
+          : null
+        }
+        {
+          this.state.warningDriver ?
+          <Warning
+            callbackFromParent = {this.parentCallback}
+            type = {this.state.warnType2}
           />
           : null
         }
@@ -108,10 +135,10 @@ class Menu3 extends React.Component {
                   pathname: "/",
                 }}
               >
-                <img className="go-to-home-3" src={homeKey} alt="homekey"></img>
+                <img className="go-to-home-3" src="http://mbs-b.com:3000/img/home.png" alt="homekey"></img>
               </Link>
             </p>
-            <p className="title">탑승자 케어 솔루션</p>
+            <p className="title">동승자 케어 솔루션</p>
           </div>
         </header>
         {/* header title */}
@@ -126,7 +153,7 @@ class Menu3 extends React.Component {
               </div>
               <div className="menu3-page-right">
                 <button className="menu3-page-button" id="menu_1">
-                  실시간 동승자 체온:{this.state.data[2][1]}도
+                  실시간 동승자 체온:{this.state.data[2][6]}도
                 </button>
                 <div className="menu3-page-chart">
                   <Line
@@ -134,17 +161,17 @@ class Menu3 extends React.Component {
                       maintainAspectRatio: false,
                     }}
                     data={{
-                      labels: ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18"],
+                      labels: ["09", "11", "13", "15", "16", "17", "18"],
                       datasets: [
                         {
-                          label: "온도",
+                          label: "습도",
                           lineTension: 0,
                           borderColor: "rgba(171, 23, 164, 1.0)",
                           backgroundColor: "rgba(0,0,0,0.00)",
                           data: this.state.data[0],
                         },
                         {
-                          label: "습도",
+                          label: "온도",
                           lineTension: 0,
                           borderColor: "rgba(176, 224, 230, 1.0)",
                           backgroundColor: "rgba(0,0,0,0.00)",

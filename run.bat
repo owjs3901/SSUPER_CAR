@@ -26,7 +26,7 @@ COPY .\appinfo.json .\app\dist\appinfo.json
 call .\ares-install -r com.mbs
 call .\ares-cli\bin\ares-package -o "out" "./app/dist" -v
 call .\ares-cli\bin\ares
-call .\ares-cli\bin\ares-install -d target2 .\out\com.mbs_1.0.0_all.ipk
+call .\ares-cli\bin\ares-install -d target .\out\com.mbs_1.0.0_all.ipk
 call .\ares-cli\bin\ares-launch com.mbs
 
 echo finish!
