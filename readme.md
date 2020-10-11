@@ -55,7 +55,8 @@ App 애니메이팅 및 UI/UX 개발
 ![Alt text](/readme_img/service_1.png)   
 
 - Server Architecture   
-![Alt text](/readme_img/server.png)
+![Alt text](/readme_img/server_1.png)   
+
 
 ## 흐름도
 ![Alt text](/readme_img/flowchart.png)
