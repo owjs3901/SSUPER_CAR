@@ -1,11 +1,13 @@
 import React from "react";
 import "./Menu1.css";
+import Warning from "../components/Warning.js";
 import driver from "../img/driver-black.png";
 import adduser from "../img/add-user.png";
 import homeKey from "../img/home.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../../../app/src/reducer";
+import fetch from "node-fetch";
 
 class Menu1 extends React.Component {
   constructor(props) {
@@ -13,12 +15,72 @@ class Menu1 extends React.Component {
     console.log("hello world");
     this.state = {
       checkbox: this.props.checkbox,
+      warning: false,
+      data: [[], [], []],     
     };
   }
+
+  componentDidMount(){
+    console.log("componentDidMount");
+
+    this.interval = setInterval(() => {
+        fetch('http://mbs-b.com:3000/data')
+        .then(res=>{
+          return res.json()
+        })
+        .then(res=>{
+          // console.log(res.data)
+          this.changeData(res.data); // state 갱신
+
+          res.data[2].forEach((value)=>{
+            // console.log(value);
+            if(value > 37.5) {
+              this.showWarn();
+            }
+          });
+
+        });
+      }, 1000);
+  }
+
+  componentWillUnmount(){
+    console.log("componentWillUnmount");
+    clearInterval(this.interval);
+  }
+
+  changeData = (fetchData) => {
+    this.setState({data: fetchData});
+  }
+
+  showWarn = () => {
+    this.setState(
+      (prevState, prevProps) => {
+        return { warning: !prevState.warning };
+      },
+      () => console.log("after warning status: " + this.state.warning)
+    );
+  };
+
+  parentCallback = (dataFromChild) => {
+    // 자식 컴포넌트에서 받은 값을 이용한 로직 처리
+    this.setState(
+      (prevState, prevProps) => {
+        return {warning: dataFromChild};
+      },
+      () => console.log("cancel warning status: " + this.state.warning)
+    );
+  };
 
   render() {
     return (
       <div className="container3">
+        {
+          this.state.warning ?
+          <Warning 
+            callbackFromParent = {this.changeWarn}
+          />
+          : null
+        }
         {/* container */}
         {/* header title */}
         <header>

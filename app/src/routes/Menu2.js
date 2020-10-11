@@ -4,6 +4,7 @@ import Warning from "../components/Warning.js";
 import homeKey from "../img/home.png";
 import { Link } from "react-router-dom";
 import Webcam from "react-webcam";
+import fetch from "node-fetch";
 
 class Menu3 extends React.Component {
   constructor(props) {
@@ -11,13 +12,80 @@ class Menu3 extends React.Component {
     this.state = {
       checkbox: this.props.checkbox,
       warning: false,
+      data: [[], [], []],    
     };
   }
+
+  componentDidMount(){
+    console.log("componentDidMount");
+
+    this.interval = setInterval(() => {
+        fetch('http://mbs-b.com:3000/data')
+        .then(res=>{
+          return res.json()
+        })
+        .then(res=>{
+          // console.log(res.data)
+          this.changeData(res.data); // state 갱신
+
+          res.data[2].forEach((value)=>{
+            // console.log(value);
+            if(value > 37.5) {
+              this.showWarn();
+            }
+          });
+
+        });
+      }, 1000);
+  }
+
+  componentWillUnmount(){
+    console.log("componentWillUnmount");
+    clearInterval(this.interval);
+  }
+
+  showWarn = () => {
+    this.setState(
+      (prevState, prevProps) => {
+        return { warning: !prevState.warning };
+      },
+      () => console.log("after warning status: " + this.state.warning)
+    );
+  };
+
+  parentCallback = (dataFromChild) => {
+    // 자식 컴포넌트에서 받은 값을 이용한 로직 처리
+    this.setState(
+      (prevState, prevProps) => {
+        return {warning: dataFromChild};
+      },
+      () => console.log("cancel warning status: " + this.state.warning)
+    );
+  };
+
+  changeData = (fetchData) => {
+    this.setState({data: fetchData});
+  }
+
+  showWarn = () => {
+    this.setState(
+      (prevState, prevProps) => {
+        return { warning: !prevState.warning };
+      },
+      () => console.log("after warning status: " + this.state.warning)
+    );
+  };
 
   render() {
     return (
       <div className="container4">
-        <Warning />
+        {
+          this.state.warning ?
+          <Warning 
+            callbackFromParent = {this.changeWarn}
+          />
+          : null
+        }
         {/* container */}
         {/* header title */}
         <header className="menu2-page-header">

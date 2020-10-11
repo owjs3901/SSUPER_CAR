@@ -11,6 +11,7 @@ import fingerprint from "../img/finger-print.png";
 import driver from "../img/driver.png";
 import seatbelt from "../img/seat-belt.png";
 import { connect } from "react-redux";
+import fetch from "node-fetch";
 
 class Home extends React.Component {
   constructor(props) {
@@ -19,9 +20,64 @@ class Home extends React.Component {
       Menu1: props.setting[0],
       Menu2: props.setting[1],
       Menu3: props.setting[2],
-      warning: false,      
+      warning: false,
+      data: [[], [], []],      
     };
+
+    
   }
+
+  componentDidMount(){
+    console.log("componentDidMount");
+
+    this.interval = setInterval(() => {
+        fetch('http://mbs-b.com:3000/data')
+        .then(res=>{
+          return res.json()
+        })
+        .then(res=>{
+          // console.log(res.data)
+          this.changeData(res.data); // state 갱신
+
+          res.data[2].forEach((value)=>{
+            // console.log(value);
+            if(value > 37.5) {
+              this.showWarn();
+            }
+          });
+
+        });
+      }, 1000);
+  }
+
+  componentWillUnmount(){
+    console.log("componentWillUnmount");
+    clearInterval(this.interval);
+  }
+
+  changeData = (fetchData) => {
+    this.setState({data: fetchData});
+  }
+
+  showWarn = () => {
+    this.setState(
+      (prevState, prevProps) => {
+        return { warning: !prevState.warning };
+      },
+      () => console.log("after warning status: " + this.state.warning)
+    );
+  };
+
+  parentCallback = (dataFromChild) => {
+    // 자식 컴포넌트에서 받은 값을 이용한 로직 처리
+    this.setState(
+      (prevState, prevProps) => {
+        return {warning: dataFromChild};
+      },
+      () => console.log("cancel warning status: " + this.state.warning)
+    );
+  };
+
 
   changeStatus1 = () => {
     this.setState(
@@ -53,7 +109,13 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-page-container">
-        <Warning/>
+        {
+          this.state.warning ?
+          <Warning 
+            callbackFromParent = {this.parentCallback}
+          />
+          : null
+        }
         <div className="home-left">
           <div className="sign">
             <div className="sign-padding">
@@ -163,6 +225,7 @@ class Home extends React.Component {
                     pathname: "/menu1",
                     state: {
                       checkbox: this.state.Menu1,
+                      data: this.state.data,
                     },
                   }}
                 >
@@ -192,6 +255,7 @@ class Home extends React.Component {
                     pathname: "/menu2",
                     state: {
                       checkbox: this.state.Menu2,
+                      data: this.state.data,
                     },
                   }}
                 >
@@ -221,6 +285,7 @@ class Home extends React.Component {
                     pathname: "/menu3",
                     state: {
                       checkbox: this.state.Menu3,
+                      data: this.state.data,
                     },
                   }}
                 >

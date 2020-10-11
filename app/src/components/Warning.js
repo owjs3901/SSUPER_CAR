@@ -20,8 +20,12 @@ class Warning extends React.Component {
         (prevState, prevProps) => {
           return { isOn: !prevState.isOn };
         },
-        () => console.log("after isOn status: " + this.state.isOn)
+        () => {
+          console.log("after isOn status: " + this.state.isOn);
+          this.props.callbackFromParent(this.state.isOn); //부모 warning 상태 변경 함수
+      }
       );
+    
   };
 
 
@@ -32,7 +36,7 @@ class Warning extends React.Component {
                 <img className="warn-img" src={warn} alt="warnimg"></img>
             </div>
             <div className="warning-center">
-                <p className="warn-text">운전자가 인식되지 않습니다.</p>
+                <p className="warn-text">동승자의 체온이 37.5도 이상입니다.</p>
             </div>
             <div className="warning-bottom">
                 <button className="warn-button" onClick={this.cancelWarning}>확인</button>
