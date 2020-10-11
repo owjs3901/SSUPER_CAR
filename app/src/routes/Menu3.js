@@ -11,27 +11,63 @@ class Menu3 extends React.Component {
   constructor(props) {
     super(props);
 
-    setInterval(function(){
-      fetch('http://mbs-b.com:3000/data')
-      .then(res=>{
-        return res.json()
-      })
-      .then(res=>{
-        console.log(res.data)
-        let a = {...this.state}
-        a.data = res;
-        setState(a)
-      })
-    }, 1000);
-
     this.state = {
       checkbox: this.props.checkbox,
       warning: false,
-      chartTemperature: [],
-      chartHumidity: [],
-      data: [[],[],[]]
+      data: [[], [], []],
     };
   }
+
+  componentDidMount(){
+    console.log("componentDidMount");
+
+    this.interval = setInterval(() => {
+        fetch('http://mbs-b.com:3000/data')
+        .then(res=>{
+          return res.json()
+        })
+        .then(res=>{
+          // console.log(res.data)
+          this.changeData(res.data); // state 갱신
+
+          res.data[2].forEach((value)=>{
+            // console.log(value);
+            if(value > 37.5) {
+              this.showWarn();
+            }
+          });
+
+        });
+      }, 1000);
+  }
+
+  componentWillUnmount(){
+    console.log("componentWillUnmount");
+    clearInterval(this.interval);
+  }
+
+  changeData = (fetchData) => {
+    this.setState({data: fetchData});
+  }
+
+  showWarn = () => {
+    this.setState(
+      (prevState, prevProps) => {
+        return { warning: !prevState.warning };
+      },
+      () => console.log("after warning status: " + this.state.warning)
+    );
+  };
+
+  parentCallback = (dataFromChild) => {
+    // 자식 컴포넌트에서 받은 값을 이용한 로직 처리
+    this.setState(
+      (prevState, prevProps) => {
+        return {warning: dataFromChild};
+      },
+      () => console.log("cancel warning status: " + this.state.warning)
+    );
+  };
 
   // changeChart = () => {
   //     if(this.state.checkbox === true){
@@ -54,7 +90,13 @@ class Menu3 extends React.Component {
   render() {
     return (
       <div className="container5">
-        <Warning />
+        {
+          this.state.warning ?
+          <Warning 
+            callbackFromParent = {this.parentCallback}
+          />
+          : null
+        }
         {/* container */}
         {/* header title */}
         <header className="menu3-page-header">
@@ -84,7 +126,7 @@ class Menu3 extends React.Component {
               </div>
               <div className="menu3-page-right">
                 <button className="menu3-page-button" id="menu_1">
-                  실시간 동승자 체온:36.5도
+                  실시간 동승자 체온:{this.state.data[2][1]}도
                 </button>
                 <div className="menu3-page-chart">
                   <Line
@@ -92,7 +134,7 @@ class Menu3 extends React.Component {
                       maintainAspectRatio: false,
                     }}
                     data={{
-                      labels: ["1", "2", "3", "4", "5"],
+                      labels: ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18"],
                       datasets: [
                         {
                           label: "온도",
