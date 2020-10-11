@@ -187,10 +187,11 @@ router.post('/response', (req, res) => {
 	}
 })
 
-let nowModel = false;
+global.nowModel = false;
 
 router.post('/model', ((req, res) => {
-	nowModel = req.body
+	global.nowModel = req.body
+	// console.log('model ', nowModel)
 	res.send('OK')
 }))
 

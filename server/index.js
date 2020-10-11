@@ -7,7 +7,7 @@ const path = require('path');
 const cors = require('cors');
 const crypto = require('crypto');
 
-let {router, nowModel} = require('./api');
+let api = require('./api');
 
 let client = null;
 
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 // app.engine('html', require('ejs').renderFile);
 app.set('views', path.join(__dirname, 'views'));
 
-app.use('/api', router)
+app.use('/api', api.router)
 
 app.get('/', function (req, res) {
 	res.redirect('/index.html')
@@ -39,19 +39,20 @@ app.get('/', function (req, res) {
 const data = {data : [
 	[1, 2, 3, 4, 5, 6, 7],
 	[1, 2, 3, 4, 5, 6, 7],
-	[1, 2, 3, 4, 5, 6, 7]
+	[1, 2, 3, 4, 5, 6, 7],
+	[false]
 ]
 }
 let dataIndex = 0;
 
 app.get('/data', function(req, res){
+	data.data[3][0] = global.nowModel.ok
 	res.json(data);
 })
 
 app.use(express.static(__dirname + '/../client/build'));
 
 app.listen(3000)
-
 /**
  * TCP
  */
@@ -60,15 +61,22 @@ const net = require('net');
 const server = net.createServer(function (socket){
 	//습도 / 온도 / 비접촉온도센서
 	client = socket
-	socket.on('data', function (data){
-		let a = String(data).split(' ');
-		data.data[0][dataIndex] = number(a[0])
-		data.data[1][dataIndex] = number(a[1])
-		data.data[2][dataIndex++] = number(a[2])
+	socket.on('data', function (data0){
+		const str = data0.toString('UTF-8')
+		
+		let a = str.split(' ')
+		data.data[0].splice(0, 1)
+		data.data[1].splice(0, 1)
+		data.data[2].splice(0, 1)
+
+		data.data[0].push(parseInt(a['0']))
+		data.data[1].push(parseInt(a['1']))
+		data.data[2].push(parseInt(a['2']))
 		if(dataIndex == 7)
 			dataIndex = 0;
-		console.log('rcv:' + data + '!')
-		if(nowModel == 1)
+		console.log('rcv:' + data0 + '!')
+
+		if(global.nowModel.ok)
 			client.write('GO')
 		else
 			client.write('STOP')
