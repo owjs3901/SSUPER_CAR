@@ -51,10 +51,10 @@ App 애니메이팅 및 UI/UX 개발
 ![Alt text](/readme_img/RPI4_2.png)   
 
 ## 아키텍처
-- Service Architecture
+- Service Architecture   
 ![Alt text])(/readme_img/service.png)   
 
-- Server Architecture
+- Server Architecture   
 ![Alt text])(/readme_img/server.png)
 
 
