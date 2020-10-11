@@ -1,10 +1,10 @@
 # 2020 제 18회 임베디드 소프트웨어 경진대회
 ## webOS 부문
 
-# 팀명 : SSU퍼카
+## 팀명 : SSU퍼카
 ## 작품명 : BAVIS - 생체인증 및 생체신호를 활용한 AI 스마트카 솔루션   
 
-# 시연영상
+## 시연영상
 <!--[![Watch the video](https://img.youtube.com/vi/anyHbAet2sY/hqdefault.jpg)](https://www.youtube.com/watch?v=anyHbAet2sY)-->
 
 ## 구성원
